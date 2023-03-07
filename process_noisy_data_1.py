@@ -39,8 +39,8 @@ for activity in ["jump", "run", "sit", "stand", "walk"]:
 
 print("Data processing finished!")
 
-print(len(all_data))
-print(len(labels))
+# print(len(all_data))
+# print(len(labels))
 
 # Write out data files
 print("Writing out data...")
