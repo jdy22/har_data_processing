@@ -33,7 +33,7 @@ for activity in ["jump", "run", "sit", "stand", "walk"]:
             label = np.array([0, 0, 0, 0, 1])
 
         all_data.append(data)
-        labels.append(data)
+        labels.append(label)
 
     print(activity + " finished...")
 

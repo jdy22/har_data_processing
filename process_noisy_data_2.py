@@ -38,7 +38,7 @@ for activity in ["sit_jump", "jump_run", "sit_stand", "sit_walk", "jump_stand", 
         data = np.reshape(data, -1)
 
         all_data.append(data)
-        labels.append(data)
+        labels.append(label)
 
     print(activity + " finished...")
 
