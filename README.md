@@ -8,3 +8,5 @@
 - [ ] 270 features = 3 transmitting antennae * 3 receiving antennae * 30 subcarriers (only 90 features in the public dataset as they only use one antenna for transmission)
 - [ ] Length of each label is 5, with 1 indicating that an activity is present (and 0 indicating that it is not present)
 - [ ] Activity 1 = jump, 2 = run, 3 = sit, 4 = stand, 5 = walk
+- [ ] Similarly for the clean data 
+- [ ] Note data point 95 for stand_run is missing from the clean data (so lengths are 1 shorter than expected)

@@ -2,17 +2,14 @@ import numpy as np
 import scipy.io as scio
 import pickle
 
+folder = "/home/joanna/clean_data/csi_mat_20230303/"
+
 all_data = []
 labels = []
 
 print("Starting data processing...")
 
-for activity in ["sit_jump", "jump_run", "sit_stand", "sit_walk", "jump_stand", "stand_run", "jump_walk", "walk_run", "sit_run", "walk_stand"]:
-    if activity == "sit_jump":
-        folder = "/home/joanna/noisy_data/csi_mat_20230213/"
-    else:
-        folder = "/home/joanna/noisy_data/csi_mat_20230220/"
-
+for activity in ["jump_sit", "jump_run", "sit_stand", "walk_sit", "jump_stand", "stand_run", "jump_walk", "walk_run", "sit_run", "walk_stand"]:
     label = np.array([0, 0, 0, 0, 0])
     if "jump" in activity:
         label[0] = 1
@@ -27,10 +24,11 @@ for activity in ["sit_jump", "jump_run", "sit_stand", "sit_walk", "jump_stand", 
     assert label.sum() == 2
 
     for index in range(1, 121):
-        filename = "csi_n_2p_" + activity + "_" + str(index).rjust(3, "0") + ".mat"
-        # Account for incorrect filenames
-        if activity == "walk_run" and index in range(41, 61):
-            filename = filename[:-7] + filename[-6:]
+        filename = "csi_c_2p_" + activity + "_" + str(index).rjust(3, "0") + ".mat"
+
+        # Account for missing file
+        if activity == "stand_run" and index == 95:
+            continue
         
         path = folder + filename
         data = scio.loadmat(path)["var_mat"]
@@ -44,13 +42,13 @@ for activity in ["sit_jump", "jump_run", "sit_stand", "sit_walk", "jump_stand", 
 
 print("Data processing finished!")
 
-# print(len(all_data))
-# print(len(labels))
+print(len(all_data))
+print(len(labels))
 
 # Write out data files
 print("Writing out data...")
 out = [all_data, labels]
-with open("noisy_data_2.pk1", "wb") as target:
+with open("clean_data_2.pk1", "wb") as target:
     pickle.dump(out, target)
 
 print("Done")
